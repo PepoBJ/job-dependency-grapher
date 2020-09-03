@@ -1,0 +1,66 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { margin:0; padding:0; }
+
+
+body { background: #fff; font-family: "Droid Serif",Georgia,"Times New Roman",Times,serif; color: #444444; }
+
+/* optional Container STYLES */
+.chart { height: 600px; width: 750px; margin: 5px; margin: 15px auto; border: 1px solid #DDD; border-radius: 3px; }
+
+.node { font-size: 11px; }
+
+.node.job-graper { 
+	cursor: pointer;
+	padding: 0 2px;
+	min-width: 220px;
+	/* height: 75px; */
+	text-align: center;
+	border: 2px solid #E8E8E3; 
+	border-radius: 2px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.5);
+	background: #fff; 
+}
+.node.job-graper:active { 
+	box-shadow: inset 1px 1px 1px rgba(0,0,0,.1); 
+	margin: 1px 0 0 1px; 
+	border: 2px solid #D3D3CB;
+}
+
+.node.job-graper .node-name {
+	line-height: 30px;
+	color: #9B9B9B;
+}
+
+.node.job-graper:hover .node-name {
+	color: #8B8B8B;
+	text-shadow: 1px 1px rgba(0,0,0,.15);
+}
+
+#jobName {
+	margin-right: 1rem;
+	padding: .5em 1em;
+    transition: transform .05s;
+}
+#graphOrientation {
+	padding: .5em 1em;
+    transition: transform .05s;
+}
+
+.jobTarget {
+	background: rgba(241, 245, 4, 0.4) !important;
+}
+
+.jobNotFound {
+	background: rgba(255, 0, 0, 0.4) !important;
+}
+
+.hidden {
+	display: none;
+}
+
+#job-graper-next {
+	border: 2px solid rgba(0, 60, 255, 0.7) !important;
+}
+
+#job-graper-back {
+	border: 2px solid rgba(0, 255, 60, 0.7) !important;
+}

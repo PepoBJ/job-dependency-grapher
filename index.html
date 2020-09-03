@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job dependency grapher</title>
+    <link rel="stylesheet" href="src/css/edgrid.css">
+    <link rel="stylesheet" href="src/css/Treant.css">
+    <link rel="stylesheet" href="src/css/connectors.css">
+    <link rel="shortcut icon" type="image/png" href="https://www.roberthuaman.com/img/favicon.png">
+</head>
+<body>
+    <div class="s-pxy-2">
+        <h1 class="s-border s-pxy-1 s-center">Job Dependency Grapher</h1>
+    </div>
+    <div class="s-cross-center s-main-center s-border-bottom s-pb-2">
+        <div class="option s-pxy-2">
+            <label for="graphOrientation">Orientation</label>
+            <select name="graphOrientation" id="graphOrientation">
+                <option value="NORTH">NORTH</option>
+                <option value="WEST" selected>WEST</option>
+            </select>
+        </div>
+        <div class="option s-pxy-2">
+            <label for="jobPrev">Back</label>
+            <input type="checkbox" id="jobPrev">
+        </div>
+        <div class="option s-pxy-2">
+            <label for="jobNext">Forward</label>
+            <input type="checkbox" id="jobNext" checked>
+        </div>
+
+        <input type="text" id="jobName" placeholder="Enter jobname">
+        
+        <div class="button" id="drawButton">Draw</div>
+    </div>
+
+    <div id="graph-next" class="hidden">
+        <h1 class="s-border-bottom s-pxy-1">1. Job Dependency (Forward)</h1>
+        <div class="s-pxy-2" id="job-graper-next">
+        </div>
+    </div>
+
+    <div id="graph-back" class="hidden">
+        <h1 class="s-border-bottom s-pxy-1">2. Job Dependency (Back)</h1>
+        <div class="s-pxy-2" id="job-graper-back">
+        </div>
+    </div>
+
+    <script src="src/js/raphael.js"></script>
+	<script src="src/js/Treant.js"></script>
+	<script src="src/js/html2canvas.min.js"></script>
+	<script src="src/data/data-jobs.js"></script>
+	<script src="src/js/app.js"></script>
+</body>
+</html>
