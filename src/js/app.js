@@ -154,3 +154,70 @@ const getPrevJobs = (jobName, parent, jobsData) => {
 
 	return dataJob;
 }
+
+let nodes = []
+let edges = []
+
+const buildGraph = (jobName, goUp=true) => {
+    let job = jobsData.filter((job) => job.job === jobName)[0];
+	
+	if(!job) {
+		job = {
+			job: jobName,
+			jobExec: "NOT EXISTS IN XML'S",
+			nextJobs: "#N/A",
+			path: "NOT EXISTS IN XML'S",
+			prevJobs: "#N/A"
+		}
+	}
+	
+    if(!nodes.some((node) => node.data.id === jobName))
+    {
+        nodes.push({
+            data: {
+                id: job.job,
+                name: job.jobExec,
+                faveColor: '#F5A45D',
+                faveShape: 'rectangle'
+            }
+        });
+    }    
+
+    if(job.prevJobs !== "#N/A" && job.prevJobs !== "" && goUp)
+    {
+        const jobsBacks = job.prevJobs.split(', ');
+        
+        jobsBacks.forEach(element => {
+            if(!exitsRelationShip(jobName, element, 'PREV')){
+                edges.push({
+                    data: {source: element, target: jobName, faveColor: '#6FB1FC'}
+                });
+
+                buildGraph(element, goUp)
+            }
+        });
+    }
+
+    if(job.nextJobs !== "#N/A" && job.nextJobs !== "")
+    {
+        const jobsNexts = job.nextJobs.split(', ');
+
+        jobsNexts.forEach(element => {
+            if(!exitsRelationShip(jobName, element, 'NEXT')){
+                edges.push({
+                    data: {source: jobName, target: element, faveColor: '#6FB1FC'}
+                });
+                
+                buildGraph(element, goUp)
+            }
+        });
+    }
+}
+
+const exitsRelationShip = (jobName, jobRelation, typeRelation) => {
+    if(typeRelation === 'NEXT'){
+        return edges.some((rel) => rel.data.source === jobName && rel.data.target === jobRelation);
+    }
+    
+    return edges.some((rel) => rel.data.source === jobRelation && rel.data.target === jobName);
+}
